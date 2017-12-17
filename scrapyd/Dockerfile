@@ -21,6 +21,7 @@ RUN set -xe \
                           python \
                           python-dev \
                           vim-tiny \
+			  python-mysqldb \
     && apt-get install -y libtiff5 \
                           libtiff5-dev \
                           libfreetype6-dev \
