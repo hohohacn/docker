@@ -63,10 +63,17 @@ RUN set -xe \
                                       zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-COPY ./scrapyd.conf /etc/scrapyd/
 COPY requirements.txt /stack-requirements.txt
 RUN pip install --no-cache-dir -r stack-requirements.txt
 VOLUME /etc/scrapyd/ /var/lib/scrapyd/
-EXPOSE 6800
-
-CMD ["scrapyd", "--pidfile="]
+# Add crontab file in the cron directory
+ADD crontab /etc/cron.d/hello-cron
+ 
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/hello-cron
+ 
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
+ 
+# Run the command on container startup
+CMD cron && tail -f /var/log/cron.log
