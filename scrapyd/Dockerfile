@@ -43,6 +43,7 @@ RUN set -xe \
                    git+https://github.com/python-pillow/Pillow.git \
 		   mysqlclient \
 		   SQLAlchemy \
+		   cron \
 		   lxml \
     && curl -sSL https://github.com/scrapy/scrapy/raw/master/extras/scrapy_bash_completion -o /etc/bash_completion.d/scrapy_bash_completion \
     && echo 'source /etc/bash_completion.d/scrapy_bash_completion' >> /root/.bashrc \
