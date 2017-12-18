@@ -36,17 +36,10 @@ RUN set -xe \
 			  libmysqlclient-dev \
     && curl -sSL https://bootstrap.pypa.io/get-pip.py | python \
     && pip install git+https://github.com/scrapy/scrapy.git \
-                   git+https://github.com/scrapy/scrapyd.git \
-                   git+https://github.com/scrapy/scrapyd-client.git \
-                   git+https://github.com/scrapinghub/scrapy-splash.git \
-                   git+https://github.com/scrapinghub/scrapyrt.git \
-                   git+https://github.com/python-pillow/Pillow.git \
 		   mysqlclient \
 		   SQLAlchemy \
 		   cron \
 		   lxml \
-    && curl -sSL https://github.com/scrapy/scrapy/raw/master/extras/scrapy_bash_completion -o /etc/bash_completion.d/scrapy_bash_completion \
-    && echo 'source /etc/bash_completion.d/scrapy_bash_completion' >> /root/.bashrc \
     && apt-get purge -y --auto-remove autoconf \
                                       build-essential \
                                       libffi-dev \
@@ -65,7 +58,6 @@ RUN set -xe \
 
 COPY requirements.txt /stack-requirements.txt
 RUN pip install --no-cache-dir -r stack-requirements.txt
-VOLUME /etc/scrapyd/ /var/lib/scrapyd/
 # Add crontab file in the cron directory
 ADD crontab /etc/cron.d/hello-cron
  
