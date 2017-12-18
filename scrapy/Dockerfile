@@ -58,6 +58,7 @@ RUN set -xe \
 
 COPY requirements.txt /stack-requirements.txt
 RUN pip install --no-cache-dir -r stack-requirements.txt
+VOLUME /ossfs /code
 # Add crontab file in the cron directory
 ADD crontab /etc/cron.d/hello-cron
  
