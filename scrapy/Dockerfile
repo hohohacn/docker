@@ -34,11 +34,11 @@ RUN set -xe \
                           zlib1g \
                           zlib1g-dev \
 			  libmysqlclient-dev \
+			  cron \
     && curl -sSL https://bootstrap.pypa.io/get-pip.py | python \
     && pip install git+https://github.com/scrapy/scrapy.git \
 		   mysqlclient \
 		   SQLAlchemy \
-		   cron \
 		   lxml \
     && apt-get purge -y --auto-remove autoconf \
                                       build-essential \
@@ -58,7 +58,6 @@ RUN set -xe \
 
 COPY requirements.txt /stack-requirements.txt
 RUN pip install --no-cache-dir -r stack-requirements.txt
-VOLUME /ossfs /code
 # Add crontab file in the cron directory
 ADD crontab /etc/cron.d/hello-cron
  
