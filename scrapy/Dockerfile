@@ -59,8 +59,8 @@ RUN set -xe \
 COPY requirements.txt /stack-requirements.txt
 RUN pip install --no-cache-dir -r stack-requirements.txt
 # Set the timezone.
-RUN  echo "Asia/Shanghai" > /etc/timezone
-RUN  dpkg-reconfigure -f noninteractive tzdata
+RUN sudo echo "Asia/Shanghai" > /etc/timezone
+RUN sudo dpkg-reconfigure -f noninteractive tzdata
 # Add crontab file in the cron directory
 ADD crontab /etc/cron.d/hello-cron
  
@@ -68,7 +68,8 @@ ADD crontab /etc/cron.d/hello-cron
 RUN chmod 0644 /etc/cron.d/hello-cron
  
 # Create the log file to be able to run tail
-RUN touch /var/log/cron.log
+#RUN touch /var/log/cron.log
  
 # Run the command on container startup
-CMD cron && tail -f /var/log/cron.log
+#CMD cron && tail -f /var/log/cron.log
+CMD cron
