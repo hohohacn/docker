@@ -70,7 +70,7 @@ RUN chmod 0644 /etc/cron.d/hello-cron
 # Create the log file to be able to run tail
 RUN touch /var/tempcron.log
 ENV PATH="/code:${PATH}" 
-ENV PYTHONPATH="/code"
+ENV PYTHONPATH=/code
 # Run the command on container startup
 CMD cron && tail -f /var/tempcron.log
 #CMD cron
