@@ -1,6 +1,8 @@
 lxml==3.7.3
 SQLAlchemy==1.1.10
 Pillow
+PyMySQL
+mysql-connector
 -e git://github.com/scrapy/scrapy.git#egg=scrapy
 -e git://github.com/scrapy/scrapyd.git#egg=scrapyd
 -e git://github.com/scrapy/scrapyd-client.git#egg=scrapy-client
